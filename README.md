@@ -1,2 +1,6 @@
 # je-practice
-学习笔记 all
+
+各种技术的学习笔记
+
+
+* [webpack](./webpack5/README.md)
