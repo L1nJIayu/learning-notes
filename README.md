@@ -5,7 +5,7 @@
 
 * [javascript](./javascript)
 
-* [webpack](./webpack5)
+* [webpack5](./webpack5)
 
 * [canvas](./canvas)
 
