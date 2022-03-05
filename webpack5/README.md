@@ -1,6 +1,6 @@
-# je-practice-webpack
+# Webpack5
 
-webpack5学习笔记👇👇👇
+Webpack5学习笔记👇👇👇
 
 ## 一、不使用webpack的情况
 
@@ -248,11 +248,9 @@ module.exports = {
 
 ### browsersList
 
-​	[browsersList](https://github.com/browserslist/browserslist#readme)可以根据我们配置的一些条件参数，从[Can I use](https://caniuse.com/usage-table)站点，去筛选出符合条件的各浏览器版本。
+    [browsersList](https://github.com/browserslist/browserslist#readme)可以根据我们配置的一些条件参数，从[Can I use](https://caniuse.com/usage-table)站点，去筛选出符合条件的各浏览器版本。
 
-​	比如配置条件是`市场占有率`大于1%、版本是最新的前两个版本之类的，去返回对应的浏览器列表。有了筛选出的浏览器版本列表，我们就可以再使用其他工具进行对应浏览器的一些兼容性进行处理。
-
-
+    比如配置条件是`市场占有率`大于1%、版本是最新的前两个版本之类的，去返回对应的浏览器列表。有了筛选出的浏览器版本列表，我们就可以再使用其他工具进行对应浏览器的一些兼容性进行处理。
 
 【使用方式】
 
@@ -290,18 +288,16 @@ android 96
 
 3. .browserslistrc
 
-   在根目录下创建`.browserslistrc`文件
+   在根目录下创建 `.browserslistrc`文件
 
 ```
 > 1%
 last 2 version AND not dead
 ```
 
-
-
 ### postcss
 
-​	[Postcss](https://www.postcss.com.cn/) 是一个用 JavaScript 工具和插件转换 CSS 代码的工具
+    [Postcss](https://www.postcss.com.cn/) 是一个用 JavaScript 工具和插件转换 CSS 代码的工具
 
 【安装】
 
@@ -309,13 +305,11 @@ last 2 version AND not dead
 npm i -D postcss postcss-cli autoprefixer
 ```
 
-​	注：
+    注：
 
 - postcss可以当作是一个编译器，可以利用其他插件工具对css文件进行处理；
 - postcss-cli是为了在使用命令行工具才安装的，不需要可以不安装；
 - Autoprefixer 是一会儿要用的插件，可以自动补充前缀。
-
-
 
 【使用方式】
 
@@ -335,7 +329,7 @@ npx postcss --use autoprefixer -o result.css ./src/css/testpostcss.css
 
 使用配置文件：
 
-​	安装`postcss-loader`
+    安装`postcss-loader`
 
 ```
 npm i -D postcss-loader
@@ -380,15 +374,15 @@ module.exports = {
 }
 ```
 
-​	`postcss-loader` 放在 `css-loader`之前处理，options中的配置，可以指定使用哪些插件进行配置，具体写法由官方提供，按约定进行配置即可。
+    `postcss-loader` 放在 `css-loader`之前处理，options中的配置，可以指定使用哪些插件进行配置，具体写法由官方提供，按约定进行配置即可。
 
-​	如上代码，使用了`autoprefixer`插件进行处理后，生成的css文件中，部分属性加了前缀进行的兼容性的处理。
+    如上代码，使用了`autoprefixer`插件进行处理后，生成的css文件中，部分属性加了前缀进行的兼容性的处理。
 
 <img src="./readme-imgs/autoprefixer-3.jpg" alt="使用配置文件处理后的结果" style="zoom:50%;" />
 
-​	可以看到处理后的结果，`user-select`属性自动补充了前缀。
+    可以看到处理后的结果，`user-select`属性自动补充了前缀。
 
-​	另外，可以看到color的值是`#12345678`这是css的新的语法，目前chrome已经兼容，样式上可以看到最后的`78`其实是透明度的设置，但是并不是所有浏览器都兼容了这个语法，所以可以使用另外一个插件`postcss-preset-env`进行最大程度的属性值兼容转化。
+    另外，可以看到color的值是`#12345678`这是css的新的语法，目前chrome已经兼容，样式上可以看到最后的 `78`其实是透明度的设置，但是并不是所有浏览器都兼容了这个语法，所以可以使用另外一个插件 `postcss-preset-env`进行最大程度的属性值兼容转化。
 
 安装：
 
@@ -423,7 +417,7 @@ npm i -D postcss-preset-env
 
 <img src="./readme-imgs/postcss-preset-env.jpg" alt="postcss-preset-env兼容转化" style="zoom:50%;" />
 
-注：`postcss-preset-env` 并非只是专门用来转化这个的，而是集合了很多当前css转化兼容时所需要用到的大部分插件，包含了很多常见的转化。所以也可以单独配置这个插件，不用再配置`autoprefixer`，因为已经包含了它。
+注：`postcss-preset-env` 并非只是专门用来转化这个的，而是集合了很多当前css转化兼容时所需要用到的大部分插件，包含了很多常见的转化。所以也可以单独配置这个插件，不用再配置 `autoprefixer`，因为已经包含了它。
 
 ```javascript
 {
@@ -443,9 +437,7 @@ npm i -D postcss-preset-env
 }
 ```
 
-
-
-postcss单独的配置文件`postcss.config.js`
+postcss单独的配置文件 `postcss.config.js`
 
 ```javascript
 module.exports = {
@@ -474,18 +466,14 @@ module: {
 }
 ```
 
-
-
 【相关链接】
 
 - [如果你不会Postcss，那么你就真的不会Postcss](https://zhuanlan.zhihu.com/p/269051473)
 - [Autoprefixer CSS online](https://autoprefixer.github.io/)
 
-
-
 ### importLoaders
 
-​	这个是css-loader的配置项，使用的场景是a.css中import了b.css，在执行loader时，a.css先使用postcss-loader进行处理，处理完了之后，再使用css-loader处理，这个时候才import了b.css，对于b.css来说，就缺少了postcss-loader的处理。
+    这个是css-loader的配置项，使用的场景是a.css中import了b.css，在执行loader时，a.css先使用postcss-loader进行处理，处理完了之后，再使用css-loader处理，这个时候才import了b.css，对于b.css来说，就缺少了postcss-loader的处理。
 
 ```
 module: {
@@ -516,21 +504,13 @@ module: {
 
 <p align="center">图6-4 importLoader使用后</p>
 
-
-
-
-
 ## 七、文件处理
-
-
 
 安装：
 
 ```javascript
 npm i -D file-loader
 ```
-
-
 
 尝试引入图片：
 
@@ -578,8 +558,6 @@ module: {
   ]
 }
 ```
-
-
 
 背景图片url解析失败问题：
 
@@ -632,11 +610,9 @@ module: {
 }
 ```
 
-
-
 文件输出的路径、名称配置：
 
-​	可以在`file-loader`下配置name、outputPath来设置打包后的文件名以及路径
+    可以在`file-loader`下配置name、outputPath来设置打包后的文件名以及路径
 
 【常用占位符】file-loader提供了一些占位符可供我们使用
 
@@ -644,7 +620,7 @@ module: {
 - [ext]：文件后缀
 - [hash]：md4算法得到了128位的字符
 - [hashContent]：同[hash]，但有些区别，使用真正的文件内容哈希值
-- [hash:<length>]：同[hash]，可配置长度
+- [hash:`<length>`]：同[hash]，可配置长度
 - ...[更多](https://www.npmjs.com/package/file-loader)
 
 ```javascript
@@ -671,15 +647,11 @@ module: {
 
 <img src="./readme-imgs/file-loader-1.jpg" alt="file-loader配置文件名和路径" style="zoom: 50%;" />
 
-
-
-
-
 ### url-loader
 
-​	`url-loader`相对于`file-loader`的区别在于打包后会将资源文件转化为base64编码存放于代码中。好处在于可以减少请求次数，坏处在于资源文件过大时，响应时间变慢，影响用户体验。
+    `url-loader`相对于 `file-loader`的区别在于打包后会将资源文件转化为base64编码存放于代码中。好处在于可以减少请求次数，坏处在于资源文件过大时，响应时间变慢，影响用户体验。
 
-​	另外，url-loader内部是可以使用file-loader的，加上limit条件作为区分即可。
+    另外，url-loader内部是可以使用file-loader的，加上limit条件作为区分即可。
 
 安装：
 
@@ -714,22 +686,18 @@ module: {
 
 ![url-loader处理的文件](./readme-imgs/url-loader-2.jpg)
 
-​	可以看到现在打包后的`dist`目录已经没有imgs目录输出，而是转化为Base64编码存放于js代码中了。假如图片大于200K，则会以file-loader的处理方式进行处理。
-
-
+    可以看到现在打包后的`dist`目录已经没有imgs目录输出，而是转化为Base64编码存放于js代码中了。假如图片大于200K，则会以file-loader的处理方式进行处理。
 
 ### assets资源模块
 
-​	webpack5开始提供了assets资源模块（[Asset Modules](https://webpack.docschina.org/guides/asset-modules/)），不需要再去使用上述的具体loader了（file-loader、url-loader）
+    webpack5开始提供了assets资源模块（[Asset Modules](https://webpack.docschina.org/guides/asset-modules/)），不需要再去使用上述的具体loader了（file-loader、url-loader）
 
-- asset/resource： 可以将目标资源拷贝到指定的目录中，功能相当于`file-loader`
-- asset/inline： 可以将目标资源添加到行内代码中，功能相当于`url-loader `
-- asset/source： 功能相当于`raw-loader`
+- asset/resource： 可以将目标资源拷贝到指定的目录中，功能相当于 `file-loader`
+- asset/inline： 可以将目标资源添加到行内代码中，功能相当于 `url-loader `
+- asset/source： 功能相当于 `raw-loader`
 - asset：可以进行动态判断，加上limit配置即可
 
-
-
-拷贝目标资源到指定目录`asset/resource`：
+拷贝目标资源到指定目录 `asset/resource`：
 
 ```javascript
 module: {
@@ -745,7 +713,7 @@ module: {
 }
 ```
 
-【补充】使用`assetModuleFilename`，可全局统一的配置拷贝后的资源路径和名称（这个其实不太合适，假如以后还要处理字体文件，那打包后的所有的拷贝资源(图片、字体)，都会放到同一个目录下，所以不建议这么做，知道有这个配置即可）
+【补充】使用 `assetModuleFilename`，可全局统一的配置拷贝后的资源路径和名称（这个其实不太合适，假如以后还要处理字体文件，那打包后的所有的拷贝资源(图片、字体)，都会放到同一个目录下，所以不建议这么做，知道有这个配置即可）
 
 ```javascript
 const path = require('path')
@@ -768,9 +736,7 @@ module.exports = {
 }
 ```
 
-
-
-将目标资源写入行内代码，以base64的形式`asset/inline`：
+将目标资源写入行内代码，以base64的形式 `asset/inline`：
 
 ```javascript
 module: {
@@ -806,11 +772,9 @@ module: {
 }
 ```
 
-
-
 ### 字体文件处理
 
-​	字体文件可从[阿里巴巴矢量图表库](https://www.iconfont.cn/)下载
+    字体文件可从[阿里巴巴矢量图表库](https://www.iconfont.cn/)下载
 
 ![image-20211228103159333](./readme-imgs/font-1.png)
 
@@ -852,27 +816,17 @@ module: {
 
 ![字体图标结果](./readme-imgs/font-2.jpg)
 
-
-
-
-
-
-
 ## 八、插件
 
-​	loader的工作时机和作用都是非常明确的，在需要读取某一个特定资源的内容时，对文件进行转换。
+    loader的工作时机和作用都是非常明确的，在需要读取某一个特定资源的内容时，对文件进行转换。
 
-​	而插件，可以贯穿webpack整个生命周期，可以做的事情不止转化资源文件，它还可以做其他更多的事情（比如每次先删除dist目录、title的修改、打包的优化、压缩处理、定义全局变量 等）。
+    而插件，可以贯穿webpack整个生命周期，可以做的事情不止转化资源文件，它还可以做其他更多的事情（比如每次先删除dist目录、title的修改、打包的优化、压缩处理、定义全局变量 等）。
 
-​	插件的本质是一个个类。
-
-
-
-
+    插件的本质是一个个类。
 
 ### clean-webpack-plugin
 
-​	此插件可以在项目打包前，删除旧的打包文件。
+    此插件可以在项目打包前，删除旧的打包文件。
 
 安装：
 
@@ -892,13 +846,9 @@ module.exports = {
 }
 ```
 
-
-
-
-
 ### html-webpack-plugin
 
-​	此插件可以在打包后的目录中添加一个html文件，自动引用入口JS文件。
+    此插件可以在打包后的目录中添加一个html文件，自动引用入口JS文件。
 
 安装：
 
@@ -940,13 +890,9 @@ module.exports = {
 </html>
 ```
 
-
-
-
-
 ### DefinePlugin
 
-​	此插件是webpack自带的插件，可用于定义全局常量。
+    此插件是webpack自带的插件，可用于定义全局常量。
 
 配置：
 
@@ -990,15 +936,9 @@ module.exports = {
 </html>
 ```
 
-
-
-
-
 ## babel
 
- 	ES6以及ES6+的部分语法，并不是所有浏览器都可以识别的，可以需要借助babel工具，对我们的代码进行转化，保证所有浏览器都能识别，确保兼容性。
-
-
+    ES6以及ES6+的部分语法，并不是所有浏览器都可以识别的，可以需要借助babel工具，对我们的代码进行转化，保证所有浏览器都能识别，确保兼容性。
 
 安装：
 
@@ -1022,12 +962,9 @@ npx babel src --out-dir build
 
 <img src="./readme-imgs/babel-core.jpg" alt="babel输出" style="zoom:67%;" />
 
-​	可以看到转化后的结果，跟源文件是一样的。
+    可以看到转化后的结果，跟源文件是一样的。
 
-​	当前的babel/core 只是可以起到源代码转化的作用，如果需要在转化的过程中做出其他修改，则需要安装拥有对应功能的其他工具包去进行对应的处理。
-
-
-
+    当前的babel/core 只是可以起到源代码转化的作用，如果需要在转化的过程中做出其他修改，则需要安装拥有对应功能的其他工具包去进行对应的处理。
 
 ##### 箭头函数转化工具包 - plugin-transform-arrow-function
 
@@ -1049,8 +986,6 @@ npx babel src --out-dir build --plugins=@babel/plugin-transform-arrow-functions
 
 箭头函数转化为了function(){}
 
-
-
 ##### 处理跨作用域 - plugin-transform-block-scoping
 
 安装：
@@ -1069,15 +1004,13 @@ npx babel src --out-dir build --plugins=@babel/plugin-transform-arrow-functions,
 
 <img src="./readme-imgs/babel-block-scoping.jpg" alt="babel-block-scoping" style="zoom:67%;" />
 
-​	let、const都转化为了var
-
-
+    let、const都转化为了var
 
 ##### preset-env 预设
 
-​	可以发现如果像这样一个个插件使用，有些麻烦，babel提供的预设的包，也就是插件的一个集合，可供使用。
+    可以发现如果像这样一个个插件使用，有些麻烦，babel提供的预设的包，也就是插件的一个集合，可供使用。
 
-​	另外，此预设插件，可以会去查browserslist，去匹配兼容性，做出对应的兼容性处理。
+    另外，此预设插件，可以会去查browserslist，去匹配兼容性，做出对应的兼容性处理。
 
 安装：
 
@@ -1095,13 +1028,9 @@ npx babel src --out-dir build --presets=@babel/preset-env
 
 <img src="./readme-imgs/babel-preset.jpg" alt="babel-preset-env" style="zoom:67%;" />
 
-
-
-
-
 ##### babel-loader
 
-​	使用loader可以提前在配置文件里面加入所需参数，这样每次打包就可以自动使用babel进行转化，不用再使用babel的命令行工具进行转化了。
+    使用loader可以提前在配置文件里面加入所需参数，这样每次打包就可以自动使用babel进行转化，不用再使用babel的命令行工具进行转化了。
 
 配置：
 
@@ -1135,15 +1064,9 @@ module.exports = {
 }
 ```
 
-
-
-
-
 ##### babel-loader的配置文件
 
-​	使用配置文件会更好一些，避免在webpack配置文件中，层层嵌套，且不可在其他项目文件中复用。
-
-
+    使用配置文件会更好一些，避免在webpack配置文件中，层层嵌套，且不可在其他项目文件中复用。
 
 【配置文件】
 
@@ -1172,10 +1095,3 @@ module.exports = {
   }
 }
 ```
-
-
-
-
-
-
-
