@@ -1,0 +1,30 @@
+
+{
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "./src/part1",
+        "./src/part2/hello"
+    ],
+    "extends": "./xxx.json",
+    "compilerOptions": {
+        "target": "es3",
+        // "module": "amd",
+        "module": "ES6",
+        // "lib": []
+        "outDir": "./dist",
+        // "outFile": "./dist/app.js"
+        "allowJs": true,
+        "checkJs": true,
+        "removeComments": true,
+        // "noEmit": true
+        // "noEmitOnError": true
+        // "alwaysStrict": true
+        // "noImplicitAny": true
+        // "noImplicitThis": true
+        // "strictNullChecks": true,
+        // "strict": true
+    }
+    
+}

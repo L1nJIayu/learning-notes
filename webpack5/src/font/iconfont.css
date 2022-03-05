@@ -1,0 +1,187 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2532048 */
+  src: url('iconfont.woff2?t=1640656891247') format('woff2'),
+       url('iconfont.woff?t=1640656891247') format('woff'),
+       url('iconfont.ttf?t=1640656891247') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-alert-l:before {
+  content: "\e604";
+}
+
+.icon-alert-f:before {
+  content: "\e605";
+}
+
+.icon-sad-l:before {
+  content: "\e649";
+}
+
+.icon-sad-f:before {
+  content: "\e644";
+}
+
+.icon-logout:before {
+  content: "\e600";
+}
+
+.icon-project:before {
+  content: "\e60c";
+}
+
+.icon-project-add:before {
+  content: "\e7ac";
+}
+
+.icon-kafka:before {
+  content: "\e6f2";
+}
+
+.icon-computed-task:before {
+  content: "\e653";
+}
+
+.icon-charge-station:before {
+  content: "\e641";
+}
+
+.icon-pack:before {
+  content: "\ee2c";
+}
+
+.icon-charge-station2:before {
+  content: "\e647";
+}
+
+.icon-hydrogen-1:before {
+  content: "\e8bc";
+}
+
+.icon-hydrogen-2:before {
+  content: "\e8cf";
+}
+
+.icon-publish:before {
+  content: "\e635";
+}
+
+.icon-unpublish:before {
+  content: "\e638";
+}
+
+.icon-arrow-right:before {
+  content: "\e73b";
+}
+
+.icon-delete:before {
+  content: "\e72a";
+}
+
+.icon-edit:before {
+  content: "\e72e";
+}
+
+.icon-move-down:before {
+  content: "\e732";
+}
+
+.icon-move-up:before {
+  content: "\e733";
+}
+
+.icon-set1:before {
+  content: "\e60d";
+}
+
+.icon-charger:before {
+  content: "\e60b";
+}
+
+.icon-charging-station:before {
+  content: "\ef63";
+}
+
+.icon-play:before {
+  content: "\e65c";
+}
+
+.icon-ban:before {
+  content: "\e938";
+}
+
+.icon-up:before {
+  content: "\e6f8";
+}
+
+.icon-channel:before {
+  content: "\e837";
+}
+
+.icon-car:before {
+  content: "\e6e6";
+}
+
+.icon-join:before {
+  content: "\e609";
+}
+
+.icon-gateway:before {
+  content: "\e602";
+}
+
+.icon-menu:before {
+  content: "\e615";
+}
+
+.icon-why:before {
+  content: "\e65e";
+}
+
+.icon-home:before {
+  content: "\e7c7";
+}
+
+.icon-set:before {
+  content: "\e686";
+}
+
+.icon-server:before {
+  content: "\e6f5";
+}
+
+.icon-database:before {
+  content: "\e669";
+}
+
+.icon-apps:before {
+  content: "\e6d8";
+}
+
+.icon-options:before {
+  content: "\e65a";
+}
+
+.icon-browser:before {
+  content: "\e64e";
+}
+
+.icon-Branches:before {
+  content: "\e60a";
+}
+
+.icon-search:before {
+  content: "\e630";
+}
+
+.icon-message:before {
+  content: "\e731";
+}
+

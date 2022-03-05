@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>刮刮乐 - Jeffrey商城</title>
+    <script src="./scratcher.js"></script>
+
+    <style>
+        /* html,body { width: 100%; height: 100%; }*/
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #game {
+            width: 300px;
+        }
+        #prize-list > div {
+            margin-bottom: 8px;
+        }
+        #scratcher {
+            width: 300px;
+            height: 100px;
+            position: relative;
+            border: 1px solid #000;
+
+            cursor: grab;
+
+        }
+        #prize {
+            font-size: 24px;
+            line-height: 100px;
+            text-align: center;
+            color: brown;
+        }
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #action-panel {
+            display: flex;
+            justify-content: space-between;
+            padding: 24px 8px;
+        }
+        #win-prize-list-wrapper {
+
+            display: none;
+        }
+        #win-prize-list {
+            border: 1px solid #ccc;
+            padding: 16px;
+            max-height: 200px;
+            width: 360px;
+            overflow: auto;
+
+            transform: translateX(-50px);
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="prize-list-wrapper">
+            <h3>奖品列表:</h3>
+            <div id="prize-list"></div>
+        </div>
+        <div id="scratcher">
+            <div id="prize">请投币!</div>
+            <canvas id="canvas" width="300" height="100"></canvas>
+        </div>
+        <div id="action-panel">
+            <div>
+                <span>投币次数：</span>
+                <span id="add-coin-count">-</span>
+            </div>
+            <button id="add-coin">投币</button>
+        </div>
+        <div id="win-prize-list-wrapper">
+            <h3>中奖列表:</h3>
+            <div id="win-prize-list"></div>
+        </div>
+    </div>
+</body>
+</html>

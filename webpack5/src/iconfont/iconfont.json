@@ -1,0 +1,247 @@
+{
+  "id": "2532048",
+  "name": "粤港澳大湾区新能源汽车大数据中心",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3904622",
+      "name": "charge",
+      "font_class": "charge-station",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "6808750",
+      "name": "Battery",
+      "font_class": "pack",
+      "unicode": "ee2c",
+      "unicode_decimal": 60972
+    },
+    {
+      "icon_id": "10731488",
+      "name": "i8homem-charge",
+      "font_class": "charge-station2",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "21548533",
+      "name": "氢气",
+      "font_class": "hydrogen-1",
+      "unicode": "e8bc",
+      "unicode_decimal": 59580
+    },
+    {
+      "icon_id": "21548617",
+      "name": "氢气",
+      "font_class": "hydrogen-2",
+      "unicode": "e8cf",
+      "unicode_decimal": 59599
+    },
+    {
+      "icon_id": "1045028",
+      "name": "publish",
+      "font_class": "publish",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "1045031",
+      "name": "unpublish",
+      "font_class": "unpublish",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "7712725",
+      "name": "right",
+      "font_class": "arrow-right",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "7712654",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e72a",
+      "unicode_decimal": 59178
+    },
+    {
+      "icon_id": "7712675",
+      "name": "edit2",
+      "font_class": "edit",
+      "unicode": "e72e",
+      "unicode_decimal": 59182
+    },
+    {
+      "icon_id": "7712688",
+      "name": "move_down",
+      "font_class": "move-down",
+      "unicode": "e732",
+      "unicode_decimal": 59186
+    },
+    {
+      "icon_id": "7712690",
+      "name": "move_up",
+      "font_class": "move-up",
+      "unicode": "e733",
+      "unicode_decimal": 59187
+    },
+    {
+      "icon_id": "3153828",
+      "name": "set",
+      "font_class": "set1",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "2053705",
+      "name": "charger 充电器",
+      "font_class": "charger",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "5633909",
+      "name": "charging-station",
+      "font_class": "charging-station",
+      "unicode": "ef63",
+      "unicode_decimal": 61283
+    },
+    {
+      "icon_id": "1433820",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "8827113",
+      "name": "ban",
+      "font_class": "ban",
+      "unicode": "e938",
+      "unicode_decimal": 59704
+    },
+    {
+      "icon_id": "7573265",
+      "name": "up",
+      "font_class": "up",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
+      "icon_id": "1415512",
+      "name": "链路",
+      "font_class": "channel",
+      "unicode": "e837",
+      "unicode_decimal": 59447
+    },
+    {
+      "icon_id": "7239407",
+      "name": "car",
+      "font_class": "car",
+      "unicode": "e6e6",
+      "unicode_decimal": 59110
+    },
+    {
+      "icon_id": "8668819",
+      "name": "接口平台",
+      "font_class": "join",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "17923747",
+      "name": "网关设备",
+      "font_class": "gateway",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "1420820",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "11349292",
+      "name": "why-l",
+      "font_class": "why",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "129004",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e7c7",
+      "unicode_decimal": 59335
+    },
+    {
+      "icon_id": "246146",
+      "name": "set",
+      "font_class": "set",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "1262109",
+      "name": "server",
+      "font_class": "server",
+      "unicode": "e6f5",
+      "unicode_decimal": 59125
+    },
+    {
+      "icon_id": "1898678",
+      "name": "database",
+      "font_class": "database",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "7684995",
+      "name": "apps",
+      "font_class": "apps",
+      "unicode": "e6d8",
+      "unicode_decimal": 59096
+    },
+    {
+      "icon_id": "7715072",
+      "name": "options-2-outline",
+      "font_class": "options",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "18477086",
+      "name": "browser",
+      "font_class": "browser",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "19099101",
+      "name": "Branches",
+      "font_class": "Branches",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "924733",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "7712713",
+      "name": "message",
+      "font_class": "message",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    }
+  ]
+}
