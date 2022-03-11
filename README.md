@@ -11,7 +11,7 @@
 
 * [typescript](./typescript)
 
-* [git]('./git.md')
+* [git](./git.md)
 
 * [其他](./others)
 
