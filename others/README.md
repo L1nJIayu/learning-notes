@@ -19,7 +19,7 @@
 
 - [ThreeJS开发需要注意的问题](./ThreeJS开发需要注意的问题.md)
 - [glTF压缩](./glTF压缩.md)
-- [TS2792: Cannot find module 'three'.]('./TS2792: Cannot find module 'three'.') 
+- [TS2792: Cannot find module 'three'.](./Cannot find module 'three'.md)
 
 
 
