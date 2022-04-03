@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX语法</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        .box {
+            border: 3px solid #000;
+            border-radius: 5px;
+            width: 80px;
+            height: 80px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        const divId1 = 'box1'
+        const divId2 = 'box2'
+        const box = 'box'
+        const arr1 = ['a','b','c']
+        const arr2 = [
+            { label: 'a', value: 1 },
+            { label: 'b', value: 2 },
+            { label: 'c', value: 3 },
+        ]
+        const VDOM = (
+            <div>
+                <div id={ divId1 } className={box} style={{backgroundColor: '#e6a23c'}}>盒子1</div>
+                <div id={ divId2 } className={box} style={{backgroundColor: '#67c23a'}}>盒子2</div>
+                <input type="text" />
+                {
+                    arr1
+                }
+                {
+                    // 这样写会报错，因为数组的元素类型是对象
+                    // arr2
+                }
+                {
+                    arr2.map((item, index) => {
+                        return <li>{ item.label }: { item.value }</li>
+                    })
+                }
+            </div>
+        )
+        ReactDOM.render(VDOM, document.querySelector('#app'))
+
+        /**
+         * 
+         * JSX语法规则：
+         *  1、只有一个root节点
+         *  2、标签中混入【JS表达式】时需要用{}
+         *  3、指定class样式类时，需要用className指定
+         *  4、内联样式需要用style={{ ... }}形式去写，相当于写一个对象表达式
+         *  5、标签必须闭合，否则会报错
+         *  6、标签的首字母
+         *      (1) 小写开头：会直接作为标签渲染，但如果该标签不属于html规范的标签，控制台会报错。
+         *      (2) 大写开头：会认为是一个React组件。
+         *  7、不允许将对象类型的变量作为表达式直接写在VDOM中，会报错，数组可以，React会直接遍历输出。但是数组元素不允许为对象类型，否则同样会报错。
+         *  
+         * 
+         **/
+    </script>
+</body>
+</html>

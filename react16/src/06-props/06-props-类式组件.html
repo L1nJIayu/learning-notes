@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        console.log('PropTypes', PropTypes)
+        class Person extends React.Component {
+
+            static propTypes = {
+                name: PropTypes.string.isRequired,
+                age: PropTypes.number.isRequired,
+                gender: PropTypes.string
+            }
+
+            static defaultProps = {
+                gender: '不男不女'
+            }
+
+            render() {
+                const { name, age, gender } = this.props
+                return (
+                    <div>
+                        <li>姓名：{ name }</li>
+                        <li>年龄：{ age }</li>
+                        <li>性别：{ gender }</li>
+                    </div>
+                )
+            }
+        }
+        // Person.propTypes = {
+        //     name: PropTypes.string.isRequired,
+        //     age: PropTypes.number.isRequired,
+        //     gender: PropTypes.string
+        // }
+        // Person.defaultProps = {
+        //     gender: '不男不女'
+        // }
+
+        const info = {
+            name: '李四',
+            age: 19
+        }
+
+        // ReactDOM.render(<Person name="张三" age={18} />, document.querySelector('#app'))
+        ReactDOM.render(<Person { ...info } />, document.querySelector('#app'))
+
+        /**
+         * 
+         *  1、对于{ ...info }，实际上是react做了处理，因为这里的花括号表达的是【这里是一个表达式】，实际这个表达式是【...info】
+         *      但是对于这种直接展开对象的语法，于JS而言是不正确的，但是react做了处理，所以可以这么写，而且只限定于标签属性允许这么写。
+         *      （JS要展开对象，需要写在对象内【{...info}】）
+         *  2、16.x版本的React，PropTypes开始不放在React中了，需要单独引入prop-types的工具包
+         *  3、props是只读的。
+         *  4、使用static关键字可以直接给类加属性，不加这个关键字相当于给类的实例加属性。
+         * 
+         **/
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数式组件</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        function MyComponent() {
+            return <h1>函数式组件</h1>
+        }
+        ReactDOM.render(<MyComponent />, document.querySelector('#app'))
+
+        /**
+         * 
+         * ReactDOM做了什么事情？
+         *  1、执行render函数，发现MyComponent组件
+         *  2、找到MyComponent，发现是函数，则调用此函数，将此函数返回的VDOM，转化为真实DOM渲染到页面
+         * 
+         * 注意点：
+         *  1、在babel翻译后的JSX，会使用严格模式"use strict"，此时，函数内部的this就不再指向window对象，而是一个undefined
+         *  2、<MyComponent />必须使用大写字母开头，否则会被认为是html标签直接渲染到页面，同时也会报错，提示不是标准的html标签。
+         * 
+         **/
+    </script>
+</body>
+</html>

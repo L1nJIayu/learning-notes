@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+
+            input1 = React.createRef()
+            panel1 = React.createRef()
+            panel2 = React.createRef()
+
+            render() {
+
+                return (
+                    <div>
+                        <input ref={ this.input1 } onChange={ this.handleInput } type="text" />
+                        <p ref={ this.panel1 }></p>
+                        <p ref={ this.panel2 }></p>
+                    </div>
+                )
+            }
+
+            handleInput = () => {
+                this.panel1.current.innerHTML = 'panel1：' + this.input1.current.value
+                this.panel2.current.innerHTML = 'panel2：' + this.input1.current.value
+            }
+            
+        }
+        
+
+        ReactDOM.render(<Demo />, document.querySelector('#app'))
+
+        /**
+         * 
+         * 注意：
+         *  1、一个createRef只能一个元素用
+         * 
+         **/
+
+    </script>
+</body>
+</html>

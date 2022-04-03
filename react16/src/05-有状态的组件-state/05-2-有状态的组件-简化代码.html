@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有状态的组件-state</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class TodoList extends React.Component {
+            state = {
+                todoList: [
+                    { id: 1, content: '吃饭' },
+                    { id: 2, content: '睡觉' },
+                    { id: 3, content: '写代码' },
+                ]
+            }
+            
+            render() {
+                console.log(this)
+                const { todoList } = this.state
+                return (
+                    <div>
+                        {
+                            todoList.map(item => {
+                                return <li key={ item.id } onClick={ this.handleClick }>{ item.content }</li>
+                            })
+                        }
+                    </div>
+                )
+            }
+
+            handleClick = () => {
+                console.log('点击了', this.state.todoList)
+                
+                this.setState({
+                    todoList: [
+                        { id: 1, content: '???' },
+                        { id: 2, content: '睡觉' },
+                        { id: 3, content: '写代码' },
+                    ]
+                })
+            }
+
+        }
+
+        ReactDOM.render(<TodoList />, document.querySelector('#app'))
+
+        /**
+         * 
+         *  类中定义的函数，都是在类的原型对象上定义的。
+         *  另外，在类中直接定义的属性，会直接赋给该类的实例中。
+         *  利用这一点，我们可以把state以及一些自定义函数，都作为类的属性进行设置，这样就不再需要写constructor了。
+         *  
+         **/
+
+    </script>
+</body>
+</html>

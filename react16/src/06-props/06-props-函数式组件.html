@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/prop-types/15.8.1/prop-types.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        function Person(props) {
+
+            const { name, age, gender } = props
+                return (
+                    <div>
+                        <li>姓名：{ name }</li>
+                        <li>年龄：{ age }</li>
+                        <li>性别：{ gender }</li>
+                    </div>
+                )
+        }
+        Person.propTypes = {
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number.isRequired,
+            gender: PropTypes.string
+        }
+        Person.defaultProps = {
+            gender: '不男不女'
+        }
+
+        const info = {
+            name: '李四',
+            age: 19
+        }
+
+        ReactDOM.render(<Person { ...info } />, document.querySelector('#app'))
+    </script>
+</body>
+</html>

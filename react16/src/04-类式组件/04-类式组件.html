@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类式组件</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class MyComponent extends React.Component {
+
+            // render 放在MyComponent的原型对象上，供组件的实例使用
+            render() {
+                return <h1>类式组件</h1>
+            }
+        }
+        ReactDOM.render(<MyComponent />, document.querySelector('#app'))
+
+        /**
+         * 
+         * ReactDOM做了什么事情？
+         *  1、发现MyComponent组件，找到MyComponent之后发现是一个类
+         *  2、new一个该类的实例，并调用此实例的render函数
+         *  3、将render函数返回的VDOM转化为真实DOM，并渲染到页面中
+         * 
+         * 注意点：
+         *  1、类式组件必须继承React.Component
+         *  2、必须有render，且有返回值
+         *  3、render中的this，指向的就是该类的实例。因为React内部在发现该组件是一个类时，就会new一个该类的实例，且调用该实例的render函数。
+         *  4、类中所有定义的方法，内部都开启了严格模式，所以如果在MyComponent中自定义其他函数，内部的this都是undefined。
+         **/
+    </script>
+</body>
+</html>

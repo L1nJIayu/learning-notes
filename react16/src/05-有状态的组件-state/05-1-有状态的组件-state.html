@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有状态的组件-state</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class TodoList extends React.Component {
+            constructor(props) {
+                super(props)
+                // 初始化状态
+                this.state = {
+                    todoList: [
+                        { id: 1, content: '吃饭' },
+                        { id: 2, content: '睡觉' },
+                        { id: 3, content: '写代码' },
+                    ]
+                }
+                this.handleClick = this.handleClick.bind(this)
+            }
+            render() {
+                const { todoList } = this.state
+                return (
+                    <div>
+                        {
+                            todoList.map(item => {
+                                return <li key={ item.id } onClick={ this.handleClick }>{ item.content }</li>
+                            })
+                        }
+                    </div>
+                )
+            }
+
+            handleClick() {
+                console.log('点击了', this.state.todoList)
+                
+                // this.state.todoList[0].content = '???'   // 无效，必须使用setState更改状态
+                this.setState({
+                    todoList: [
+                        { id: 1, content: '???' },
+                        { id: 2, content: '睡觉' },
+                        { id: 3, content: '写代码' },
+                    ]
+                })
+            }
+
+        }
+
+        ReactDOM.render(<TodoList />, document.querySelector('#app'))
+
+        /**
+         * 
+         * 注意点：
+         *  1、类中定义的函数，是放在了类的原型对象上的，而不是在类的实例上。
+         *  2、类中的方法默认开启了严格模式，onClick得到handleClick，只是作为回调函数。
+         *      当onClick执行时函数时，并不是TodoList的实例调用了这个函数，而是调用/执行了函数，相当于直接【handleClick()】
+         *      所以handleClick内部的this，指向的既不是TodoList的实例，也不是Window，而是undefined。
+         *  2、bind会返回一个新的函数，且此函数的this指向的是，bind传入的参数【this.handleClick = this.handleClick.bind(this)】
+         *  3、状态中的数据不允许直接更改，需要使用setState，更新是一种合并，而不是直接替换
+         *  4、状态更新几次，render就调用几次。
+         * 
+         * 
+         **/
+
+    </script>
+</body>
+</html>

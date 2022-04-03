@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Life extends React.Component {
+            constructor(props) {
+                super(props)
+                console.log('Life ====>', 'constructor')
+                this.state = {
+                    count: 0,
+                    car: null
+                }
+            }
+            componentWillMount() {
+                console.log('Life ====>', 'componentWillMount')
+            }
+            componentDidMount() {
+                console.log('Life ====>', 'componentDidMount')
+            }
+
+            shouldComponentUpdate() {
+                console.log('Life ====>', 'shouldComponentUpdate')
+                return true
+            }
+            componentWillUpdate() {
+                console.log('Life ====>', 'componentWillUpdate')
+            }
+            componentDidUpdate() {
+                console.log('Life ====>', 'componentDidUpdate')
+            }
+
+            componentWillUnmount() {
+                console.log('Life ====>', 'componentWillUnmount')
+            }
+
+
+
+            render() {
+                console.log('Life ====>', 'render')
+                return (
+                    <div>
+                        <p>{ this.state.count }</p>
+                        <button onClick={ this.add }>+1</button>
+                        <button onClick={ this.update }>强制更新</button>
+                        <button onClick={ this.unmount }>卸载组件</button>
+                        <button onClick={ this.sendCar }>给子组件传一辆车</button>
+                        <Child car={ this.state.car } />
+                    </div>
+                )
+            }
+
+            add = () => {
+                this.setState({
+                    count: this.state.count + 1
+                })
+            }
+            update = () => {
+                this.forceUpdate()
+            }
+            unmount = () => {
+                ReactDOM.unmountComponentAtNode(document.querySelector('#app'))
+            }
+            sendCar = () => {
+                this.setState({
+                    car: '奔驰'
+                })
+            }
+        }
+
+        class Child extends React.Component {
+            componentWillReceiveProps(props) {
+                console.log('Child ====>', 'componentWillReceiveProps')
+            }
+            shouldComponentUpdate() {
+                console.log('Child ====>', 'shouldComponentUpdate')
+                return true
+            }
+            componentWillUpdate() {
+                console.log('Child ====>', 'componentWillUpdate')
+            }
+            componentDidUpdate() {
+                console.log('Child ====>', 'componentDidUpdate')
+            }
+            render() {
+                console.log('Child ====>', 'render')
+                return (
+                    <div>
+                        <p>父组件传递过来的车：{ this.props.car }</p>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Life />, document.querySelector('#app'))
+
+        /**
+         * 
+         * 生命周期钩子：
+         *  
+         *  挂载：调用ReactDOM.render()
+         *      constructor
+         *      componentWillMount
+         *      render
+         *      componentDidMount
+         * 
+         *  状态更新：调用this.setState
+         *      shouldComponentUpdate
+         *      componentWillUpdate
+         *      render
+         *      componentDidUpdate
+         * 
+         *  强制更新：调用this.forceUpdate
+         *      componentWillUpdate
+         *      render
+         *      componentDidUpdate
+         * 
+         *  卸载：调用ReactDOM.unmountComponentAtNode
+         *      componentWillUnmount
+         * 
+         *  父子组件之间：若父组件调用了render，子组件会发生
+         *      componentWillReceiveProps(props)  (第一次传不算)
+         *      shouldComponentUpdate
+         *      componentWillUpdate
+         *      render
+         *      componentDidUpdate
+         * 
+         **/
+    </script>
+</body>
+</html>

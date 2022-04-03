@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>props</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+
+            state = {
+                panel2Text: 0
+            }
+
+            render() {
+                const { panel2Text } = this.state
+
+                return (
+                    <div>
+                        <input ref={element => this.input1 = element} onChange={ this.handleInput } type="text" />
+                        <p ref={element => {this.panel = element;console.log('每次更新都会调一次：', element)}}></p>
+                        <p>{ panel2Text }</p>
+                        <p ref={ this.panel3Ref }></p>
+                    </div>
+                )
+            }
+
+            handleInput = () => {
+
+                this.panel.innerHTML = this.input1.value
+                this.panel3.innerHTML = this.input1.value
+                this.setState({
+                    panel2Text: this.state.panel2Text + 1
+                })
+            }
+
+            panel3Ref = (element) => {
+                this.panel3 = element
+                console.log('#只会调一次：', element)
+            }
+        }
+        
+
+        ReactDOM.render(<Demo />, document.querySelector('#app'))
+
+        /**
+         * 
+         * 注意：
+         *  1、回调形式的ref，如果以内联形式写，在组件每次【更新】的时候，都会被调用两次，第一次element返回的是null，第二次才是正确的DOM
+         *      这是因为每次渲染时，在读到ref的内联函数时，执行完之后，该函数就会被释放了，所以当每次更新时，执行的其实都是一个新的函数。
+         *      由于对于React来说，它不确定之前那个被释放的函数做了什么，为了保证可以被完美清空，所以第一次传入的element是null，第二次调用才传正确的DOM。
+         *      通过将ref的回调函数定义成class的绑定函数的方式可以避免这个问题，但是大多数情况下都是无关紧要的
+         * 
+         **/
+
+    </script>
+</body>
+</html>

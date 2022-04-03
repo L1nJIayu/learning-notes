@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单数据获取</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component {
+            state = {
+                username: null,
+                password: null
+            }
+
+            // 高阶函数，函数柯里化处理
+            saveFormData = (prop) => {
+                return (e) => {
+                    const { value } = e.target
+
+                    this.setState({
+                        [prop]: value
+                    })
+
+                }
+            }
+
+            submit = () => {
+                const { username, password } = this.state
+                alert(`用户名：${ username }, 密码：${ password }`)
+            }
+
+            render() {
+                return (
+                    <div>
+                        用户名：<input onChange={ this.saveFormData('username') } type="text" />
+                        密码： <input onChange={ this.saveFormData('password') } type="password" />
+                        <button onClick={ this.submit }>登录</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Login />, document.querySelector('#app'))
+    </script>
+</body>
+</html>

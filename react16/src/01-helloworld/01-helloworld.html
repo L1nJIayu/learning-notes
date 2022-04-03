@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello React</title>
+
+    <!-- React核心 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- ReactDOM，用于支持React操作DOM -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- 利用Babel，将JSX转为JS -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <!-- 容器 -->
+    <div id="app-jsx"></div>
+    <div id="app-js"></div>
+
+    <!-- 注意：type需要改为babel -->
+    <script type="text/babel">
+        // 创建一个虚拟DOM
+        let VDOM = (
+            <div>
+                <h1>Hello React......By JSX</h1>
+            </div>
+        )
+
+        // 将虚拟DOM渲染到容器中
+        ReactDOM.render(VDOM, document.querySelector('#app-jsx'))
+
+        // 虚拟DOM本质是一个JS对象
+        console.log(VDOM) // object
+        console.log(VDOM instanceof Object) // true
+        /**
+         * 虚拟DOM是React内部用的DOM，本质是一个对象，且没有原生DOM那么多属性
+         * React最终会将虚拟DOM转化为真实的DOM
+        */
+        
+    </script>
+
+    <!-- 
+        补充一个用JS写的，
+        用JSX写，babel最终翻译其实是翻译成下面的样子，所以JSX相当于是一个语法糖。
+    -->
+    <script>
+        // 创建虚拟DOM
+        let VDOM2 = React.createElement('div', { id: 'vdom-2'}, React.createElement('h1', {}, 'Hello React......By JS'))
+
+        // 将虚拟DOM渲染到容器中
+        ReactDOM.render(VDOM2, document.querySelector('#app-js'))
+    </script>
+</body>
+</html>
