@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>生命周期</title>
 
-    <script src="https://unpkg.com/react@16.3/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16.3/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
 </head>
@@ -24,9 +24,13 @@
                     car: null
                 }
             }
-            componentWillMount() {
-                console.log('Life ====>', 'componentWillMount')
+            static getDerivedStateFromProps() {
+                console.log('Life ====>', 'getDerivedStateFromProps')
+                return null
             }
+            // UNSAFE_componentWillMount() {
+            //     console.log('Life ====>', 'componentWillMount')
+            // }
             componentDidMount() {
                 console.log('Life ====>', 'componentDidMount')
             }
@@ -35,8 +39,12 @@
                 console.log('Life ====>', 'shouldComponentUpdate')
                 return true
             }
-            componentWillUpdate() {
-                console.log('Life ====>', 'componentWillUpdate')
+            // UNSAFE_componentWillUpdate() {
+            //     console.log('Life ====>', 'componentWillUpdate')
+            // }
+            getSnapshotBeforeUpdate() {
+                console.log('Life ====>', 'getSnapshotBeforeUpdate')
+                return null
             }
             componentDidUpdate() {
                 console.log('Life ====>', 'componentDidUpdate')
@@ -81,15 +89,24 @@
         }
 
         class Child extends React.Component {
-            componentWillReceiveProps(props) {
-                console.log('Child ====>', 'componentWillReceiveProps')
+            // UNSAFE_componentWillReceiveProps(props) {
+            //     console.log('Child ====>', 'componentWillReceiveProps')
+            // }
+            state = {}
+            static getDerivedStateFromProps() {
+                console.log('Child ====>', 'getDerivedStateFromProps')
+                return null
             }
             shouldComponentUpdate() {
                 console.log('Child ====>', 'shouldComponentUpdate')
                 return true
             }
-            componentWillUpdate() {
-                console.log('Child ====>', 'componentWillUpdate')
+            // UNSAFE_componentWillUpdate() {
+            //     console.log('Child ====>', 'componentWillUpdate')
+            // }
+            getSnapshotBeforeUpdate() {
+                console.log('Child ====>', 'getSnapshotBeforeUpdate')
+                return null
             }
             componentDidUpdate() {
                 console.log('Child ====>', 'componentDidUpdate')
@@ -112,30 +129,38 @@
          *  
          *  挂载：调用ReactDOM.render()
          *      constructor
-         *      componentWillMount
+         *      getDerivedStateFromProps
          *      render
          *      componentDidMount
          * 
          *  状态更新：调用this.setState
+         *      getDerivedStateFromProps
          *      shouldComponentUpdate
-         *      componentWillUpdate
          *      render
+         *      getSnapshotBeforeUpdate
          *      componentDidUpdate
          * 
          *  强制更新：调用this.forceUpdate
-         *      componentWillUpdate
+         *      getDerivedStateFromProps
          *      render
+         *      getSnapshotBeforeUpdate
          *      componentDidUpdate
          * 
          *  卸载：调用ReactDOM.unmountComponentAtNode
          *      componentWillUnmount
          * 
          *  父子组件之间：若父组件调用了render，子组件会发生
-         *      componentWillReceiveProps(props)  (第一次传不算)
-         *      shouldComponentUpdate
-         *      componentWillUpdate
-         *      render
-         *      componentDidUpdate
+         * 
+         *      Life ====> getDerivedStateFromProps
+         *      Life ====> shouldComponentUpdate
+         *      Life ====> render
+         *      Child ====> getDerivedStateFromProps
+         *      Child ====> shouldComponentUpdate
+         *      Child ====> render
+         *      Child ====> getSnapshotBeforeUpdate
+         *      Life ====> getSnapshotBeforeUpdate
+         *      Child ====> componentDidUpdate
+         *      Life ====> componentDidUpdate
          * 
          **/
     </script>
