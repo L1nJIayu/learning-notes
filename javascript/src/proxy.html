@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代理</title>
+</head>
+<body>
+    <script>
+        // let target = {
+        //     id: 1,
+        //     content: '目标--target1'
+        // }
+        // let handler = {
+        //     get(target, prop, proxy) {
+        //         return target[prop]
+        //     }
+        // }
+        // let proxy = new Proxy(target, handler)
+        
+
+        // proxy.content = '??'
+
+        // console.log('target', target)
+        // console.log('proxy', proxy)
+        // console.log('target == proxy', target == proxy)
+        // console.log('target === proxy', target === proxy)
+
+        // console.log('target["id"]', target['id'])
+        // console.log('proxy["id"]', proxy['id'])
+
+        let target = { id: 1 }
+        let handler = {}
+        const { proxy, revoke } = Proxy.revocable(target, handler)
+
+        console.log(target.id)	// 1
+        console.log(proxy.id)		// 1
+
+        revoke()
+
+        console.log(target.id)	// 1
+        console.log(proxy.id)		// TypeError
+    </script>
+</body>
+</html>
