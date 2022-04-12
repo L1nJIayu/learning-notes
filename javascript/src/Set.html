@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set</title>
+</head>
+<body>
+    <script>
+        /**
+         * 
+         * 自定义可迭代对象，传入Set
+         * 
+         * */
+
+        const obj = {
+            [Symbol.iterator]: function*() {
+                yield "a"
+                yield "b"
+                yield "c"
+            }
+        }
+
+        let set = new Set(obj)
+        console.log(set)
+
+        /**
+         * 
+         * 数组去重
+         * 
+         * */
+        // let arr1 = [1,2,3,4,5,5,5,1,2,3]
+        // let set1 = new Set(arr1)
+
+        // // 利用扩展运算符
+        // console.log([...set1])          // [1,2,3,4,5]
+        // // 利用Array.from
+        // console.log(Array.from(set1))   // [1,2,3,4,5]
+
+
+        /**
+         * 
+         * 字符串去重
+         * 
+         * */
+
+        // let str2 = 'aabbcc'
+        // let set2 = new Set(str2)
+
+        // let newStr2 = [...set2].join('')
+        // console.log('newStr2', newStr2)	// 'abc'
+
+        /**
+         * 
+         * 并集、交集和差集
+         * 
+         * 
+         * */
+
+        // let arr1 = ['a', 'b', 'c', 'd']
+        // let arr2 = ['a', 'e', 'f', 'g']
+
+        // // 并集
+        // let result1 = [...new Set([...arr1, ...arr2])]
+        // // 交集
+        // let result2 = [...new Set(arr1.filter(item => arr2.includes(item)))]
+        // // 差集
+        // let result3_1 = [...new Set(arr1.filter(item => !arr2.includes(item)))]
+        // let result3_2 = [...new Set(arr2.filter(item => !arr1.includes(item)))]
+
+        // console.log('arr1', arr1)          // arr1 (4) ['a', 'b', 'c', 'd']
+        // console.log('arr2', arr2)          // Set.html:37 arr2 (4) ['a', 'e', 'f', 'g']
+        // console.log('并集', result1)        // Set.html:38 并集 (7) ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+        // console.log('交集', result2)        // Set.html:39 交集 ['a']
+        // console.log('差集', result3_1)      // Set.html:40 差集 (3) ['b', 'c', 'd']
+        // console.log('差集', result3_2)      // Set.html:41 差集 (3) ['e', 'f', 'g']
+        
+
+    </script>
+</body>
+</html>
