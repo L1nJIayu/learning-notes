@@ -7,4 +7,6 @@ JavaScript学习笔记
 - [代理与反射](./notes/代理与反射.md)
 - [Set和WeakSet](./notes/Set和WeakSet.md)
 - [Map和WeakMap](./notes/Map和WeakMap.md)
+- [BOM](./notes/BOM.md)
+- [JSON](./notes/JSON.md)
 

@@ -26,12 +26,16 @@
 #### Ubuntu相关
 
 - [Navicate无法连接腾讯云安装的Mariadb](./Navicate无法连接腾讯云安装的Mariadb.md)
-
 - [ubuntu创建root](./ubuntu创建root.md)
-
 - [在ubuntu安装nginx](./在ubuntu安装nginx.md)
 
-  
+
+
+#### 数据库相关
+
+- [忘记本机的Mysql密码怎么办](./忘记本机的Mysql密码怎么办.md)
+
+
 
 #### 其他
 
