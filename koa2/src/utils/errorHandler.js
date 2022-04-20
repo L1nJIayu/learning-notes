@@ -1,4 +1,5 @@
 
+// 服务器错误
 const serverErrorHandler = (err, ctx) => {
     ctx.status = 500
     ctx.body = {
@@ -7,6 +8,8 @@ const serverErrorHandler = (err, ctx) => {
         data: err
     }
 }
+
+// 统一错误处理
 const errorHandler = (err, ctx) => {
     let status = 400
     console.log(err)

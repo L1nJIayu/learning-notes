@@ -1,9 +1,24 @@
 
 const bcrypt = require('bcryptjs')
+const Joi = require('joi')
 
 const service = require('../service/user.service')
 const { user: { usernameAlreadyExisted, usernameNotNull, passwordNotNull } } = require('../constant/error.type')
 
+const paramsValidator = ( routeName ) => {
+    return async (ctx, next) => {
+        switch(routeName) {
+            case '/add':
+                Joi.object({
+                    username: Joi.string().required(),
+                    password: Joi.string().required()
+                })
+                break
+        }
+        console.log(routeName, ctx.request.body)
+        await next()
+    }
+}
 
 // username 参数验证
 const usernameValidator = async (ctx, next) => {
@@ -13,6 +28,12 @@ const usernameValidator = async (ctx, next) => {
     
         if(!username) {
             ctx.app.emit('errorHandler', usernameNotNull , ctx)
+            return
+        } else if (typeof username !== "string") {
+            ctx.app.emit('errorHandler', { code: 4000, msg: '用户名只能是字符串类型', data: null } , ctx)
+            return
+        } else if (username.length > 20) {
+            ctx.app.emit('errorHandler', { code: 4000, msg: '用户名长度不能超过20个字符', data: null}, ctx)
             return
         }
     
@@ -78,6 +99,7 @@ const cryptPassword = async (ctx, next) => {
 }
 
 module.exports = {
+    paramsValidator,
     usernameValidator,
     passwordValidator,
     userUniqueValidator,

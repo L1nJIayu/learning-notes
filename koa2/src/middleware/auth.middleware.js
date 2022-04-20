@@ -1,8 +1,15 @@
 const jwt = require('jsonwebtoken')
+const { auth: { JsonWebTokenError, TokenExpiredError } } = require('../constant/error.type')
+
+// 验证token
 const auth = async (ctx, next) => {
     try {
+        const { authorization = '' } = ctx.request.header
+        if(!authorization) {
+            ctx.app.emit('errorHandler', JsonWebTokenError, ctx)
+            return
+        }
         const { JWT_SECRET } = process.env
-        const { authorization } = ctx.request.header
         const token = authorization.replace('Bearer ', '')
         const payload = jwt.verify(token, JWT_SECRET)
         ctx.state.user = payload
@@ -11,18 +18,10 @@ const auth = async (ctx, next) => {
         ctx.body = err
         switch(err.name) {
             case 'TokenExpiredError':
-                ctx.body = {
-                    code: 4000,
-                    data: null,
-                    msg: 'Token已过期'
-                }
+                ctx.app.emit('errorHandler', TokenExpiredError, ctx)
                 return
             case 'JsonWebTokenError':
-                ctx.body = {
-                    code: 4000,
-                    data: null,
-                    msg: '无效Token'
-                }
+                ctx.app.emit('errorHandler', JsonWebTokenError, ctx)
                 return
             default:
                 ctx.body = err

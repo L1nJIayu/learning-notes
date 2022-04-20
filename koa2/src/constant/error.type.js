@@ -1,4 +1,28 @@
 module.exports = {
+    auth: {
+        TokenExpiredError: {
+            code: 4000,
+            data: null,
+            msg: 'Token已过期'
+        },
+        JsonWebTokenError: {
+            code: 4000,
+            data: null,
+            msg: '无效Token'
+        }
+    },
+    gallery: {
+        fileNotNull: {
+            code: 4000,
+            data: null,
+            msg: '文件不能为空'
+        },
+        fileTypeError: {
+            code: 4000,
+            data: null,
+            msg: '文件类型不支持'
+        }
+    },
     user: {
         usernameAlreadyExisted: {
             code: 4000,

@@ -1,6 +1,6 @@
 # Koa2笔记
 
-
+此笔记的koa版本为 `   "koa": "^2.13.4",`
 
 
 
@@ -89,6 +89,7 @@ const Router = require('koa-router')
 
 const router = new Router({ prefix: '/users' })	// prefix可统一配置接口前缀
 
+// ‘/users/list’
 router.get('/list', ( ctx, next ) => {
     ctx.body = [
         { id: 1, name: '张三' },
@@ -186,7 +187,7 @@ src
 # 安装Sequelize
 npm i sequelize
 # 安装mysql数据库驱动（其他数据库的驱动具体去官网找）
-npm i mariadb
+npm i mysql2
 ```
 
 
@@ -208,7 +209,7 @@ const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
     dialect: 'mysql'
 })
 
-// 测试连接
+// 用于测试连接数据库
 seq.authenticate().then(
     res => {
         console.log('数据库连接成功')
@@ -308,6 +309,9 @@ const UserModel = require('../models/user.model')
 class UserService {
     async getUser(params) {
       return await UserModel.findOne({ where: { ...params }})
+    }
+    async getUserList() {
+        return await UserModel.findAll()
     }
 }
 
@@ -553,6 +557,44 @@ module.exports = {
 
 
 
+## 十二、路由的自动加载
+
+​	当路由模块越来越多时，每次都要重新手动去注册新的路由模块还是有些繁琐。
+
+​	可以写一个中间件，通过读取`router`目录下的所有路由模块文件，并将这些路由模块全部加载，这样就可以实现路由自动加载了。
+
+**路由自动加载-中间件**
+
+```javascript
+const fs = require('fs')
+
+const Router = require('koa-router')
+const router = new Router()
+
+fs.readdirSync(__dirname).forEach(file => {
+    if(file !== 'index.js') {
+        const r = require(`./${ file }`)
+        router.use(r.routes())
+    }
+})
+
+module.exports = router
+```
+
+**app.js**
+
+```javascript
+const Koa = require('koa')
+
+const router = require('./router')
+const app = new Koa()
+
+app
+  .use(router.routes())	// 将统一注册后的最终router注册到app中
+  .use(router.allowedMethods())	// 补充一个methods验证，如果method不对，则返回state=405
+
+module.exports = app
+```
 
 
 
@@ -560,10 +602,94 @@ module.exports = {
 
 
 
+## 十三、文件上传
+
+​	`koa-body`有可配置选项，支持文件上传。
+
+**文件上传配置**
+
+```javascript
+app.use(new KoaBody({
+  multipart: true,
+  formidable: {
+    uploadDir: path.join(__dirname, '../uploadFiles'),
+    keepExtensions: true
+  }
+}))
+```
+
+**接收文件**
+
+```javascript
+// 验证文件必填的中间件
+const fileValidator = async (ctx,next) => {
+		// 传送文件，需要从ctx.request.files中获取
+    const { file } = ctx.request.files
+    if(!file) {
+        ctx.app.emit('errorHandler', fileNotNull, ctx)
+        return
+    }
+    return await next()
+}
+
+// 接收文件
+const path = require('path')
+async uploadExhibit(ctx, next) {
+  try {
+    const { file: { path: filePath } } = ctx.request.files
+    const url = `http://localhost:3131/${ path.basename(filePath) }`
+    ctx.app.emit('successHandler', { ctx, msg: '文件上传成功', data: url })
+  } catch (err) {
+    console.error(err)
+    ctx.app.emit('serverErrorHandler', err, ctx)
+  }
+}
+```
 
 
 
 
+
+## 十四、静态文件管理
+
+借助`koa-static`可以实现静态文件管理。
+
+**app.js**
+
+```javascript
+const Koa = require('koa')
+const staticServer = require('koa-static')
+
+const app = new Koa()
+// 指定app.js所在目录的上一级的uploadFiles目录作为静态资源服务目录
+app.use(staticServer(path.join(__dirname, '../uploadFiles')))
+```
+
+生效以后，就可以直接通过【服务地址+文件名】访问【uploadFiles】目录下的文件了。
+
+
+
+## 十五、参数验证
+
+​	如果每个模块的参数验证都一个个手写，重复代码还是挺多的，所以最好是用一些别人封装好的工具，直接使用，代码编写的效率会高一些。
+
+​	这里推荐使用`joi`进行参数验证。
+
+
+
+**安装**
+
+```javascript
+npm i joi
+```
+
+
+
+**基本使用**
+
+```javascript
+
+```
 
 
 
